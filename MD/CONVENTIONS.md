@@ -1,21 +1,21 @@
-# 📜 Project Standard Conventions
+# 📜 Project Standard Conventions & Architecture
 
-이 문서는 프로젝트의 코드 품질 유지와 원활한 협업을 위한 표준 가이드라인을 정의합니다. 모든 팀원은 코드 작성 시 본 가이드를 준수해야 합니다.
+이 문서는 프로젝트의 코드 품질 유지, 원활한 협업, 그리고 일관된 프로젝트 구조를 위한 표준 가이드라인을 정의합니다. 모든 팀원은 개발 시작 전 본 가이드를 반드시 숙지해야 합니다.
 
 ---
 
 ## 1. 공통 기본 원칙 (Core Principles)
 
-* **Clean Code**: 의미 있는 변수명 사용, 함수의 단일 책임 원칙(SRP)을 준수합니다.
+* **Clean Code**: 의미 있는 변수명 사용 및 함수의 단일 책임 원칙(SRP)을 준수합니다.
 * **Don't Repeat Yourself (DRY)**: 중복되는 로직은 공통 모듈이나 유틸리티로 분리합니다.
 * **Separation of Concerns (SoC)**: UI, 비즈니스 로직, 데이터 접근 계층을 명확히 분리합니다.
+* **API-First Design**: 서비스 간 통신을 위해 API 스펙(Swagger/OpenAPI)을 먼저 정의하고 개발을 시작합니다.
+* **Stateless Backend**: 서버는 상태를 가지지 않으며, 모든 인증은 JWT 토큰을 기반으로 처리합니다.
 * **YAGNI (You Ain't Gonna Need It)**: 실제로 필요하기 전까지는 미리 복잡한 기능을 구현하지 않습니다.
 
 ---
 
 ## 2. 명명 규칙 (Naming Conventions)
-
-### 🔤 언어별 표준
 
 | 대상 | React (TS) | Java (Spring) | Python (FastAPI) |
 | :--- | :--- | :--- | :--- |
@@ -28,82 +28,121 @@
 
 ---
 
-## 3. 기술 스택별 상세 규칙
+## 3. 프로젝트 폴더 구조 (Project Structure)
 
-### ⚛️ Frontend (React & TypeScript)
+### ⚛️ Frontend (src/)
+**Feature-Sliced Design(FSD)** 개념을 차용하여 기능별 응집도를 높인 구조를 사용합니다.
 
-* **컴포넌트 선언**: `const` 키워드를 사용한 화살표 함수를 권장합니다.
-* **Props 구조 분해**: 컴포넌트 인자 단계에서 명시적으로 구조 분해를 수행합니다.
-* **비즈니스 로직 분리**: 복잡한 상태 관리나 비즈니스 로직은 Custom Hooks(`use...`)로 추출합니다.
-* **상태 관리**:
-    * 서버 데이터: `TanStack Query (React Query)` 사용
-    * 전역 UI 상태: `Zustand` 사용
-* **구조**: Feature-based Architecture 구조를 준수합니다 (`features/`, `shared/`, `app/`).
+- **app/**: 전역 설정 (Providers, Router, Global CSS)
+- **pages/**: 라우트별 페이지 컴포넌트 (비즈니스 로직 최소화)
+- **widgets/**: 여러 feature가 결합된 독립적 복합 컴포넌트
+- **features/**: 도메인 기반 핵심 기능 단위 (auth, chat, report, admin)
+    - **[feature]/api/**: API 호출 함수
+    - **[feature]/ui/**: 해당 기능 전용 컴포넌트
+    - **[feature]/hooks/**: 커스텀 훅 (Logic)
+    - **[feature]/types/**: 타입 정의
+- **shared/**: 전역 공통 요소 (ui-kit, utils, api-client, assets)
 
-### ☕ Java (Spring Boot)
+### ☕ Java Backend (src/main/java/...)
+**Domain-Driven 패키지 구조**를 사용하여 도메인별로 계층을 분리합니다.
 
-* **Lombok 활용**: `@Getter`, `@NoArgsConstructor`, `@Builder` 등을 활용하되, `@Data` 사용은 지양합니다.
-* **Entity ↔ DTO**: 외부 API 응답 및 요청에는 반드시 DTO를 사용하며, Entity를 직접 노출하지 않습니다.
-* **의존성 주입**: 생성자 주입(`@RequiredArgsConstructor`)을 사용합니다.
-* **예외 처리**: `@RestControllerAdvice`를 통해 전역적으로 예외를 관리합니다.
+- **global/**: 전역 공통 설정 (Security, Config, Exception, Util)
+- **domain/**: 비즈니스 도메인별 패키지 (user, video, report, chat)
+    - **controller/**: API 엔드포인트
+    - **service/**: 비즈니스 로직
+    - **repository/**: DB 접근 인터페이스
+    - **entity/**: JPA Entity
+    - **dto/**: Request/Response 객체
 
-### 🐍 Python (FastAPI)
+### 🐍 Python Backend (app/)
+**Module-based 구조**를 사용하여 기능별로 모듈화합니다.
 
-* **Type Hinting**: 모든 함수의 인자와 반환값에 명시적인 타입 힌트를 작성합니다.
-* **Pydantic 모델**: 요청/응답 스키마 정의 시 반드시 `BaseModel`을 상속받아 사용합니다.
-* **Async/Await**: 외부 AI 엔진 호출이나 DB I/O 발생 시 비동기 처리를 기본으로 합니다.
-* **Dependency Injection**: DB 세션이나 공통 로직은 `Depends`를 통해 주입합니다.
+- **core/**: 앱 전역 설정 (config, security, database)
+- **api/**: API 라우터 정의 및 버전 관리 (v1/api.py)
+- **services/**: 핵심 비즈니스 로직 및 AI 엔진 연동
+- **schemas/**: Pydantic 모델 (Request/Response 데이터 검증)
+- **models/**: DB 테이블 모델 (필요 시 사용)
+- **main.py**: 애플리케이션 진입점 및 FastAPI 초기화
 
 ---
 
-## 4. API 디자인 및 통신 (API Conventions)
+## 4. 기술 스택별 상세 규칙
+
+### ⚛️ Frontend
+* **컴포넌트 선언**: `const`를 사용한 화살표 함수를 권장합니다.
+* **Logic-UI 분리**: 복잡한 로직은 반드시 Custom Hooks로 추출합니다.
+* **상태 관리**: 서버 데이터는 `TanStack Query`, UI 상태는 `Zustand`를 사용합니다.
+
+### ☕ Java
+* **Lombok**: `@Getter`, `@NoArgsConstructor`, `@Builder`를 활용하며 `@Data`는 지양합니다.
+* **DTO**: Entity를 절대 노출하지 않으며 전용 DTO를 사용합니다.
+* **의존성 주입**: 생성자 주입(`@RequiredArgsConstructor`)을 원칙으로 합니다.
+
+### 🐍 Python
+* **Type Hinting**: 모든 인자와 반환값에 타입을 명시합니다.
+* **Async/Await**: I/O 블로킹 방지를 위해 비동기 처리를 기본으로 합니다.
+
+---
+
+## 5. API 디자인 및 통신 (API Conventions)
 
 * **버전 관리**: 모든 엔드포인트는 `/api/v1/`로 시작합니다.
-* **공통 성공 응답 포맷**:
-    ```json
-    {
-      "success": true,
-      "data": { ... },
-      "error": null
-    }
-    ```
-* **공통 에러 응답 포맷**:
-    ```json
-    {
-      "success": false,
-      "data": null,
-      "error": {
-        "code": "AUTH_001",
-        "message": "로그인이 필요합니다."
-      }
-    }
-    ```
+* **공통 성공/실패 응답**:
+```json
+{
+  "success": true,
+  "data": { "item": "value" },
+  "error": null
+}
+
+{
+  "success": false,
+  "data": null,
+  "error": {
+    "code": "ERROR_CODE",
+    "message": "사용자 메시지"
+  }
+}
+```
 
 ---
 
-## 5. Git 전략 및 커밋 규칙
+## 6. Git 전략 및 커밋 규칙
 
 ### 🌿 브랜치 전략 (Git Flow Lite)
-* `main`: 프로덕션 배포 브랜치
-* `develop`: 개발 통합 브랜치
-* `feature/기능명`: 개별 기능 개발 브랜치
-* `fix/버그명`: 긴급 수정 브랜치
+프로젝트의 안정성과 빠른 배포를 위해 단순화된 Git Flow를 사용합니다.
+
+- **main**: 상시 배포 가능한 상태의 메인 브랜치 (Production)
+- **develop**: 다음 출시 버전을 위해 기능을 통합하는 브랜치 (Staging)
+- **feature/[기능명]**: 단위 기능을 개발하는 브랜치. 완료 후 `develop`으로 머지
+- **fix/[버그명]**: 출시 버전에서 발견된 긴급 버그를 수정하는 브랜치
 
 ### 💬 커밋 메시지 형식 (Conventional Commits)
-`type(scope): subject` 형식을 따릅니다.
+`type(scope): subject` 형식을 준수하여 히스토리 가독성을 높입니다.
 
-* `feat`: 새로운 기능 추가
-* `fix`: 버그 수정
-* `docs`: 문서 수정 (README, CONVENTIONS 등)
-* `refactor`: 코드 리팩토링 (결과 변경 없음)
-* `style`: 코드 포맷팅 (세미콜론 누락, 린트 수정 등)
-* **예시**: `feat(chat): AI 대화 히스토리 저장 기능 구현`
+- **feat**: 새로운 기능 추가
+- **fix**: 버그 수정
+- **docs**: 문서 수정 (README, CONVENTIONS 등)
+- **refactor**: 코드 리팩토링 (기능 변경 없이 구조만 개선)
+- **style**: 코드 포맷팅, 세미콜론 누락 수정 (비즈니스 로직 변경 없음)
+- **test**: 테스트 코드 추가 및 리팩토링
+- **chore**: 빌드 업무, 패키지 매니저 설정 등 (기타 변경사항)
+
+**예시**: `feat(chat): AI 대화 히스토리 저장 API 구현`
 
 ---
 
-## 6. 문서화 가이드
+## 7. 문서화 가이드
 
-* **API 문서**: Java(SpringDoc), Python(FastAPI Swagger)를 자동 생성하여 활용합니다.
-* **주석 (Comments)**: '어떻게' 보다는 '왜' 이 코드를 작성했는지에 대해 설명합니다.
+### 📖 API 문서화
+별도의 수기 문서 대신 자동 생성 도구를 사용하여 최신 상태를 유지합니다.
+- **Java (Spring Boot)**: `SpringDoc OpenAPI (Swagger)`를 활용하여 UI 제공
+- **Python (FastAPI)**: 기본 내장된 `/docs` (Swagger) 및 `/redoc` 활용
+- **Frontend**: API 호출 타입과 실제 응답 스펙을 명시한 `types.ts` 파일 관리
+
+### 💡 주석 및 설명
+- **Why, Not How**: 코드가 '어떻게' 작동하는지보다는 '왜' 이렇게 작성했는지에 집중하여 작성합니다.
+- **표준 포맷 준수**: Java는 `Javadoc`, Python은 `Docstring` 형식을 따릅니다.
+- **중요 로직**: 복잡한 알고리즘이나 비즈니스 규칙이 포함된 서비스 레이어에는 반드시 설명을 첨부합니다.
 
 ---
