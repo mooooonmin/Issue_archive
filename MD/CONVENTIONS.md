@@ -132,17 +132,64 @@
 
 ---
 
-## 7. 문서화 가이드
+## 7. 주석 및 문서화 규칙 (Commenting & Documentation)
 
-### 📖 API 문서화
-별도의 수기 문서 대신 자동 생성 도구를 사용하여 최신 상태를 유지합니다.
-- **Java (Spring Boot)**: `SpringDoc OpenAPI (Swagger)`를 활용하여 UI 제공
-- **Python (FastAPI)**: 기본 내장된 `/docs` (Swagger) 및 `/redoc` 활용
-- **Frontend**: API 호출 타입과 실제 응답 스펙을 명시한 `types.ts` 파일 관리
+코드 자체로 의도를 파악할 수 있는 'Clean Code'를 지향하되, 복잡한 로직이나 API 명세에는 아래 규칙에 따라 주석을 작성합니다.
 
-### 💡 주석 및 설명
-- **Why, Not How**: 코드가 '어떻게' 작동하는지보다는 '왜' 이렇게 작성했는지에 집중하여 작성합니다.
-- **표준 포맷 준수**: Java는 `Javadoc`, Python은 `Docstring` 형식을 따릅니다.
-- **중요 로직**: 복잡한 알고리즘이나 비즈니스 규칙이 포함된 서비스 레이어에는 반드시 설명을 첨부합니다.
+### 💡 공통 원칙
+- **Why, Not How**: '어떻게' 작동하는지보다 '왜' 이 로직이 필요한지에 집중합니다.
+- **Update with Code**: 코드 변경 시 반드시 주석도 최신화합니다.
+- **Remove Dead Code**: 사용하지 않는 코드는 주석 처리하지 말고 삭제합니다. (Git 히스토리로 확인 가능)
+
+### ☕ Java (Javadoc 스타일)
+클래스, 인터페이스, 공용(public) 메서드 상단에 작성합니다.
+```java
+/**
+ * 사용자 정보 기반 보고서 생성 서비스
+ * * @param userId   조회할 사용자 ID
+ * @param date     보고서 기준 날짜
+ * @return         생성된 보고서 엔티티
+ * @throws NotFoundException 사용자를 찾을 수 없는 경우 발생
+ */
+public Report generateReport(Long userId, LocalDate date) { ... }
+````
+
+### 🐍 Python (Google Style Docstring)
+FastAPI의 서비스 로직 및 엔진 연동 함수에 작성합니다.
+``` Python
+def analyze_video_clip(clip_path: str, threshold: float = 0.5) -> dict:
+    """
+    영상 클립을 분석하여 객체 탐지 결과를 반환합니다.
+
+    Args:
+        clip_path (str): 분석할 영상 파일의 로컬 경로
+        threshold (float): 탐지 정확도 임계값 (기본값: 0.5)
+
+    Returns:
+        dict: 탐지된 객체 리스트 및 메타데이터
+    """
+    pass
+```
+
+### ⚛️ TypeScript / React (TSDoc 스타일)
+복잡한 컴포넌트나 공통 Hook, 유틸리티 함수에 작성합니다.
+```TypeScript
+/**
+ * AI 분석 결과에 따른 Bounding Box 오버레이 컴포넌트
+ * * @param boxes - 탐지된 객체의 좌표 배열
+ * @param onSelect - 박스 클릭 시 호출되는 핸들러
+ */
+interface OverlayProps {
+  boxes: BoxType[];
+  onSelect: (id: string) => void;
+}
+const VideoOverlay = ({ boxes, onSelect }: OverlayProps) => { ... }
+````
+### 🚩 특수 주석 (Annotations)
+작업 중인 상태를 표시하기 위해 팀 공통 키워드를 사용합니다.
+
+- // TODO: [작성자] 내용 : 나중에 구현해야 할 기능
+- // FIXME: [작성자] 내용 : 버그가 예상되거나 수정이 필요한 급한 부분
+- // NOTE: [작성자] 내용 : 다른 개발자가 알아야 할 중요한 참고 사항
 
 ---
