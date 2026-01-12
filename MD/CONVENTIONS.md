@@ -1,3 +1,5 @@
+26.01.12 TODO 파트별 내용 확인 후 수정 <br><br>
+
 # 📜 Project Standard Conventions & Architecture (ver0.1)
 
 이 문서는 프로젝트의 코드 품질 유지, 원활한 협업, 그리고 일관된 프로젝트 구조를 위한 표준 가이드라인을 정의합니다. 모든 팀원은 개발 시작 전 본 가이드를 반드시 숙지해야 합니다.
@@ -213,5 +215,3 @@ const VideoOverlay = ({ boxes, onSelect }: OverlayProps) => { ... }
 - // NOTE: [작성자] 내용 : 다른 개발자가 알아야 할 중요한 참고 사항
 
 ---
-
-26.01.12 
