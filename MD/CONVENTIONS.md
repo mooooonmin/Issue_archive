@@ -37,7 +37,19 @@
 
 ---
 
-## 2. 명명 규칙 (Naming Conventions)
+## 2. 기술 스택 및 환경 구성 (Tech Stack & Environment)
+
+| 구분 | 기술 스택 | 버전 / 비고 |
+| :--- | :--- | :--- |
+| **Frontend** | React, TypeScript | Node.js 20.11.1 / React 18.2.0 / TypeScript 5.3.3 |
+| **Backend (API)** | Spring Boot, Spring Security | Java 17 / Spring Boot 3.2.5 / Spring Security 6.2.3 |
+| **AI Service** | Python, FastAPI | Python 3.11.9 / FastAPI 0.110.0 |
+| **Database (Metadata)** | TimescaleDB | TimescaleDB 2.13.1 |
+| **Database (Service)** | PostgreSQL | PostgreSQL 15.6 |
+
+---
+
+## 3. 명명 규칙 (Naming Conventions)
 
 | 대상 | React (TS) | Java (Spring) | Python (FastAPI) |
 | :--- | :--- | :--- | :--- |
@@ -51,7 +63,7 @@
 ---
 
 ---
-## 3. 프로젝트 폴더 구조 (Project Structure)
+## 4. 프로젝트 폴더 구조 (Project Structure)
 
 ### ⚛️ Frontend (src/)
 **Feature-Sliced Design(FSD)** 개념을 차용하여 기능별 응집도를 높인 구조를 사용합니다.
@@ -89,7 +101,7 @@
 
 ---
 
-## 4. 기술 스택별 상세 규칙
+## 5. 기술 스택별 상세 규칙
 
 ### ⚛️ Frontend
 * **컴포넌트 선언**: `const`를 사용한 화살표 함수를 권장합니다.
@@ -106,7 +118,7 @@
 
 ---
 
-## 5. API 디자인 및 통신 (API Conventions)
+## 6. API 디자인 및 통신 (API Conventions)
 
 * **버전 관리**: 모든 엔드포인트는 `/api/v1/`로 시작합니다.
 * **공통 성공/실패 응답**:
@@ -129,7 +141,7 @@
 
 ---
 
-## 6. Git 전략 및 커밋 규칙
+## 7. Git 전략 및 커밋 규칙
 
 ### 🌿 브랜치 전략 (Git Flow Lite)
 프로젝트의 안정성과 빠른 배포를 위해 단순화된 Git Flow를 사용합니다.
@@ -154,7 +166,7 @@
 
 ---
 
-## 7. 주석 및 문서화 규칙 (Commenting & Documentation)
+## 8. 주석 및 문서화 규칙 (Commenting & Documentation)
 
 코드 자체로 의도를 파악할 수 있는 'Clean Code'를 지향하되, 복잡한 로직이나 API 명세에는 아래 규칙에 따라 주석을 작성합니다.
 
