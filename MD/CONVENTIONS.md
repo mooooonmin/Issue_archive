@@ -1,32 +1,23 @@
-26.01.12 TODO 파트별 내용 확인 후 수정 <br><br>
-
 # 📜 Project Standard Conventions & Architecture (ver0.1)
 
 이 문서는 프로젝트의 코드 품질 유지, 원활한 협업, 그리고 일관된 프로젝트 구조를 위한 표준 가이드라인을 정의합니다. 모든 팀원은 개발 시작 전 본 가이드를 반드시 숙지해야 합니다.
 
 ---
 
-## 0. 개발 프로세스 및 협업 원칙 (Development Process)
+## 0. 개발 프로세스 및 AI 협업 원칙 (Core Principles)
 
-성공적인 프로젝트 완수를 위해 모든 개발 단계에서 아래의 프로세스 원칙을 엄격히 준수합니다.
+### 🤖 AI 협업 원칙 (AI-Agent Interaction)
+- **No Assumptions**: AI는 구현 방법이 모호하거나 정보가 부족할 경우 추측하지 말고 사용자에게 질문해야 합니다.
+- **Context Loading**: 코드 생성 전 반드시 `@CONVENTIONS.md`와 `@TASKS.md`를 최우선 참조합니다.
+- **Modular Coding**: 한 번에 다수의 파일을 수정하기보다 하나의 기능(Task) 단위로 코드를 제안하고 검증받습니다.
 
-### 🔄 기획 및 설계 (Phase 1) 우선 원칙
-- **요구사항 명확화**: Phase 1(기획 및 설계) 단계에서 요구사항이 모호할 경우, 즉시 사용자에게 피드백을 요청하여 상세 설계를 확정한 후 다음 단계로 진행합니다.
-- **반복적 플래닝**: 설계의 완성도를 높이기 위해 플래닝 단계는 여러 차례 반복 수행될 수 있습니다.
-- **구현 시점 정의**: 실제 코드 작성(Implementation)은 사용자가 명시적으로 '구현' 또는 'Act' 명령을 내린 단위에 대해서만 시작합니다.
-
-### 📝 작업 기록 및 검증 (Task Management)
-- **태스크 완료 보고**: 각 태스크(Linear Task) 완료 시, 작업 내용을 요약 정리하여 해당 Task 리스트에 Comment 형식으로 기록합니다.
-- **단계별 검증 (Verification)**: 각 단계가 끝날 때마다 정의된 요구사항과 일치하는지 검증 절차를 거칩니다.
-- **피드백 루프**: 검증 과정에서 이슈 발견 시, 지체 없이 이전 단계로 돌아가 설계를 보완(Feedback)하는 유연한 프로세스를 지향합니다.
-
-### 🚀 개발 실행 원칙
-- 모든 개발은 확정된 `CONVENTIONS.md`와 `TASKS.md`를 바탕으로 진행됩니다.
-- 코드 작성 전, 해당 단위 기능에 대한 기술적 검토가 선행되어야 합니다.
+### 🔄 기획 및 설계 우선 원칙
+- **구현 트리거**: 실제 코드 작성은 사용자가 명시적으로 '구현' 또는 'Act' 명령을 내린 단위에 대해서만 시작합니다.
+- **피드백 루프**: 각 단계별 검증을 통해 이슈 발견 시 지체 없이 이전 단계로 돌아가 설계를 보완합니다.
 
 ---
 
-## 1. 공통 기본 원칙 (Core Principles)
+## 1. 공통 기본 원칙
 
 * **Clean Code**: 의미 있는 변수명 사용 및 함수의 단일 책임 원칙(SRP)을 준수합니다.
 * **Don't Repeat Yourself (DRY)**: 중복되는 로직은 공통 모듈이나 유틸리티로 분리합니다.
@@ -104,21 +95,34 @@
 ## 5. 기술 스택별 상세 규칙
 
 ### ⚛️ Frontend
-* **컴포넌트 선언**: `const`를 사용한 화살표 함수를 권장합니다.
-* **Logic-UI 분리**: 복잡한 로직은 반드시 Custom Hooks로 추출합니다.
+- **상태 관리**: 서버 데이터는 `TanStack Query`, 전역 UI 상태는 `Zustand`를 사용합니다.
+- **Logic-UI 분리**: 복잡한 비즈니스 로직은 반드시 Custom Hooks(`use...`)로 추출합니다.
+- **Type Safety**: `any` 사용을 엄격히 금지하며, 인터페이스 정의를 우선합니다.
 
-### ☕ Java
-* **Lombok**: `@Getter`, `@NoArgsConstructor`, `@Builder`를 활용하며 `@Data`는 지양합니다.
-* **DTO**: Entity를 절대 노출하지 않으며 전용 DTO를 사용합니다.
-* **의존성 주입**: 생성자 주입(`@RequiredArgsConstructor`)을 원칙으로 합니다.
+### ☕ Java (Spring Boot)
+- **Lombok**: `@Getter`, `@NoArgsConstructor`, `@Builder`를 사용하며 `@Data`는 사용을 금지합니다.
+- **변환 (Mapping)**: Entity와 DTO 간 변환은 `MapStruct` 라이브러리를 사용합니다.
+- **예외 처리**: `global/exception` 패키지 내 `@RestControllerAdvice`를 통해 전역 에러를 응답 포맷에 맞춰 처리합니다.
 
-### 🐍 Python
-* **Type Hinting**: 모든 인자와 반환값에 타입을 명시합니다.
-* **Async/Await**: I/O 블로킹 방지를 위해 비동기 처리를 기본으로 합니다.
+### 🐍 Python (FastAPI)
+- **Type Hinting**: 모든 인자와 반환값에 타입을 명시합니다.
+- **Validation**: 요청/응답 스키마는 `Pydantic` 모델을 사용합니다.
+- **Dependency**: DB 세션 및 유틸리티는 `Depends()`를 통한 의존성 주입을 활용합니다.
 
 ---
 
-## 6. API 디자인 및 통신 (API Conventions)
+## 6. 데이터베이스 규칙 (Database Conventions)
+
+- **공통 컬럼 (Audit)**: 모든 테이블은 아래 컬럼을 필수로 포함합니다.
+  - `created_at`: 생성 일시 (Timestamp)
+  - `updated_at`: 수정 일시 (Timestamp)
+  - `created_by`: 생성자 (Varchar, ID)
+- **명명 규칙**: 테이블 및 컬럼명은 `snake_case`를 사용합니다.
+- **Soft Delete**: 데이터 삭제 시 실제로 삭제하지 않고 `deleted_at` 컬럼을 활용하는 것을 원칙으로 합니다. (필요 시 적용)
+
+---
+
+## 7. API 디자인 및 통신 (API Conventions)
 
 * **버전 관리**: 모든 엔드포인트는 `/api/v1/`로 시작합니다.
 * **공통 성공/실패 응답**:
@@ -141,7 +145,7 @@
 
 ---
 
-## 7. Git 전략 및 커밋 규칙
+## 8. Git 전략 및 커밋 규칙
 
 ### 🌿 브랜치 전략 (Git Flow Lite)
 프로젝트의 안정성과 빠른 배포를 위해 단순화된 Git Flow를 사용합니다.
@@ -166,7 +170,7 @@
 
 ---
 
-## 8. 주석 및 문서화 규칙 (Commenting & Documentation)
+## 9. 주석 및 문서화 규칙 (Commenting & Documentation)
 
 코드 자체로 의도를 파악할 수 있는 'Clean Code'를 지향하되, 복잡한 로직이나 API 명세에는 아래 규칙에 따라 주석을 작성합니다.
 
