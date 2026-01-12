@@ -53,7 +53,6 @@
 
 ---
 
----
 ## 4. 프로젝트 폴더 구조 (Project Structure)
 
 ### ⚛️ Frontend (src/)
