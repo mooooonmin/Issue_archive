@@ -17,6 +17,32 @@
 
 ---
 
+## 0.1 표준 개발 프로세스 (Standard Development Workflow)
+
+모든 Task는 아래의 7단계 순서에 따라 순차적으로 진행하며, 단계를 건너뛰지 않습니다.
+
+1.  **Context 확인 (Context Loading)**
+    * [cite_start]작업 시작 전 `@CONVENTIONS.md`와 `@TASKS.md`를 로드하여 기술 스택, 규칙, 현재 진행 상황을 파악합니다. 
+2.  **요구사항 싱크 (Requirement Sync)**
+    * [cite_start]수행할 Task의 목표를 재확인하고, 화면설계서(@UI)나 기획 내용 중 모호한 부분은 질문을 통해 명확히 정의합니다. 
+3.  **상세 설계 (Detailed Design)**
+    * [cite_start]코드를 작성하기 전, 변경이 필요한 DB 스키마, API 명세, 컴포넌트 구조를 설계하여 사용자에게 먼저 제안합니다. 
+4.  **구현 승인 (Act Trigger)**
+    * [cite_start]설계안이 확정되면 사용자로부터 '구현' 또는 'Act' 명령을 받은 후 실제 코드 작성을 시작합니다. [cite: 5, 12, 13]
+5.  **모듈별 구현 (Modular Implementation)**
+    * [cite_start]한 번에 하나의 파일 또는 하나의 논리적 단위로 코드를 작성하며, 작성된 코드가 컨벤션과 일치하는지 스스로 검증합니다. 
+6.  **검증 및 테스트 (Verification)**
+    * [cite_start]구현된 기능이 요구사항을 충족하는지 확인하고, 에러나 예외 상황이 없는지 테스트합니다. 
+7.  **Task 완료 및 보고 (Completion Report)**
+    * [cite_start]`TASKS.md`의 해당 항목을 `[x]` 처리하고, 구현된 내용의 요약과 특이사항을 해당 Task 하단에 코멘트로 기록합니다. [cite: 5, 12, 13]
+
+## 0.2 UI/UX 개발 세부 원칙
+
+* **Layout First**: 컴포넌트 내부 로직(API 호출, 상태 변화)을 작성하기 전, `Box Model`과 `Layout`을 먼저 완성하여 화면의 뼈대를 구축합니다.
+* [cite_start]**Component-Based**: 화면설계서상의 각 영역(Header, Dashboard Card, Chat Bubble 등)을 독립적인 컴포넌트로 분리하여 위치를 잡습니다[cite: 14, 16, 283].
+* **Visual Hierarchy**: 중요도에 따른 컴포넌트 배치와 여백(Padding/Margin) 규칙을 최우선으로 고려합니다.    
+---
+
 ## 1. 공통 기본 원칙
 
 * **Clean Code**: 의미 있는 변수명 사용 및 함수의 단일 책임 원칙(SRP)을 준수합니다.
