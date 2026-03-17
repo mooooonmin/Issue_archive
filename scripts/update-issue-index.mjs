@@ -62,17 +62,7 @@ function toKstIso(date = new Date()) {
 
 function issueLine(issue) {
   const title = String(issue.title || "").replace(/\r?\n/g, " ").trim();
-  const labels = Array.isArray(issue.labels)
-    ? issue.labels
-        .map((l) => (typeof l === "string" ? l : l?.name))
-        .filter(Boolean)
-        .map((name) => `\`${name}\``)
-        .join(", ")
-    : "";
-
-  const state = issue.state === "open" ? "open" : "closed";
-  const suffix = labels ? ` - ${state} - ${labels}` : ` - ${state}`;
-  return `- [#${issue.number}](${issue.html_url}) ${title}${suffix}`;
+  return `- [#${issue.number}](${issue.html_url}) ${title}`;
 }
 
 function buildIndex(issues) {
@@ -83,7 +73,7 @@ function buildIndex(issues) {
   lines.push("## Issue Index");
   lines.push("");
   lines.push(
-    `업데이트: ${toKstIso()} (KST) / 총 ${issues.length}개 (Open ${openIssues.length}, Closed ${closedIssues.length})`
+    `업데이트: ${toKstIso()} (KST) / 총 ${issues.length}개`
   );
   lines.push("");
 
