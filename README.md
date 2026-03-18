@@ -5,10 +5,10 @@ The section below is auto-generated from GitHub Issues.
 <!-- ISSUE_INDEX_START -->
 ## Issue Index
 
-업데이트: 2026-03-18 12:24:28 (KST) / 총 5개
+업데이트: 2026-03-18 12:24:48 (KST) / 총 5개
 
 ### Open
-- [#6](https://github.com/mooooonmin/Issue_archive/issues/6) 키스토어 파일 생성
+- [#6](https://github.com/mooooonmin/Issue_archive/issues/6) 1. 키스토어 파일 생성
 
 ### Closed
 - [#5](https://github.com/mooooonmin/Issue_archive/issues/5) Flutter 에서 flutter_native_splash 패키지를 통해 스플래시 화면을 생성하는 코드.
