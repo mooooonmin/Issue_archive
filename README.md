@@ -5,10 +5,10 @@ The section below is auto-generated from GitHub Issues.
 <!-- ISSUE_INDEX_START -->
 ## Issue Index
 
-업데이트: 2026-03-18 12:29:22 (KST) / 총 5개
+업데이트: 2026-03-19 09:36:27 (KST) / 총 6개
 
 ### Open
-- 없음
+- [#7](https://github.com/mooooonmin/Issue_archive/issues/7) 관리자 권한으로 파일/폴더 삭제
 
 ### Closed
 - [#6](https://github.com/mooooonmin/Issue_archive/issues/6) 1. 키스토어 파일 생성
