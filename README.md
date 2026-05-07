@@ -5,10 +5,10 @@ The section below is auto-generated from GitHub Issues.
 <!-- ISSUE_INDEX_START -->
 ## Issue Index
 
-업데이트: 2026-03-19 12:11:13 (KST) / 총 7개
+업데이트: 2026-05-07 14:06:34 (KST) / 총 8개
 
 ### Open
-- 없음
+- [#9](https://github.com/mooooonmin/Issue_archive/issues/9) Windows에서 lsof, kill, sudo 명령어가 작동하지 않을 때 대처 방법
 
 ### Closed
 - [#8](https://github.com/mooooonmin/Issue_archive/issues/8) app version up build
