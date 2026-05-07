@@ -5,12 +5,13 @@ The section below is auto-generated from GitHub Issues.
 <!-- ISSUE_INDEX_START -->
 ## Issue Index
 
-업데이트: 2026-05-07 14:06:34 (KST) / 총 8개
+업데이트: 2026-05-07 14:07:16 (KST) / 총 8개
 
 ### Open
-- [#9](https://github.com/mooooonmin/Issue_archive/issues/9) Windows에서 lsof, kill, sudo 명령어가 작동하지 않을 때 대처 방법
+- 없음
 
 ### Closed
+- [#9](https://github.com/mooooonmin/Issue_archive/issues/9) Windows에서 lsof, kill, sudo 명령어가 작동하지 않을 때 대처 방법
 - [#8](https://github.com/mooooonmin/Issue_archive/issues/8) app version up build
 - [#7](https://github.com/mooooonmin/Issue_archive/issues/7) 관리자 권한으로 파일/폴더 삭제
 - [#6](https://github.com/mooooonmin/Issue_archive/issues/6) 1. 키스토어 파일 생성
