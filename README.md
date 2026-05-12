@@ -5,12 +5,13 @@ The section below is auto-generated from GitHub Issues.
 <!-- ISSUE_INDEX_START -->
 ## Issue Index
 
-업데이트: 2026-05-12 15:57:14 (KST) / 총 9개
+업데이트: 2026-05-12 15:58:19 (KST) / 총 9개
 
 ### Open
-- [#10](https://github.com/mooooonmin/Issue_archive/issues/10) WSL Ubuntu SSH 접속 IP 변경 가이드
+- 없음
 
 ### Closed
+- [#10](https://github.com/mooooonmin/Issue_archive/issues/10) WSL Ubuntu SSH 접속 IP 변경 가이드
 - [#9](https://github.com/mooooonmin/Issue_archive/issues/9) Windows에서 lsof, kill, sudo 명령어가 작동하지 않을 때 대처 방법
 - [#8](https://github.com/mooooonmin/Issue_archive/issues/8) app version up build
 - [#7](https://github.com/mooooonmin/Issue_archive/issues/7) 관리자 권한으로 파일/폴더 삭제
