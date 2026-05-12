@@ -5,10 +5,10 @@ The section below is auto-generated from GitHub Issues.
 <!-- ISSUE_INDEX_START -->
 ## Issue Index
 
-업데이트: 2026-05-07 14:07:16 (KST) / 총 8개
+업데이트: 2026-05-12 15:57:14 (KST) / 총 9개
 
 ### Open
-- 없음
+- [#10](https://github.com/mooooonmin/Issue_archive/issues/10) WSL Ubuntu SSH 접속 IP 변경 가이드
 
 ### Closed
 - [#9](https://github.com/mooooonmin/Issue_archive/issues/9) Windows에서 lsof, kill, sudo 명령어가 작동하지 않을 때 대처 방법
