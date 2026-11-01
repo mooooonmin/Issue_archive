@@ -60,14 +60,48 @@ function toKstIso(date = new Date()) {
   });
 }
 
+const UNLABELED = "미분류";
+
 function issueLine(issue) {
   const title = String(issue.title || "").replace(/\r?\n/g, " ").trim();
-  return `- [#${issue.number}](${issue.html_url}) ${title}`;
+  const open = issue.state === "open" ? " _(open)_" : "";
+  return `- [#${issue.number}](${issue.html_url}) ${title}${open}`;
+}
+
+// Same rule GitHub uses for heading anchors.
+function anchor(heading) {
+  return heading
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N} _-]/gu, "")
+    .replace(/ /g, "-");
+}
+
+// An issue with several labels is listed under each of them.
+function groupByLabel(issues) {
+  const groups = new Map();
+  for (const issue of issues) {
+    const names = (issue.labels || []).map((l) => l.name);
+    for (const name of names.length ? names : [UNLABELED]) {
+      if (!groups.has(name)) groups.set(name, []);
+      groups.get(name).push(issue);
+    }
+  }
+  // Most issues first; 미분류 always last.
+  return [...groups.entries()].sort(([a, x], [b, y]) => {
+    if (a === UNLABELED) return 1;
+    if (b === UNLABELED) return -1;
+    return y.length - x.length || a.localeCompare(b);
+  });
+}
+
+function labelSearchUrl(name) {
+  const q = encodeURIComponent(`is:issue label:"${name}"`);
+  return `https://github.com/${owner}/${repoName}/issues?q=${q}`;
 }
 
 function buildIndex(issues) {
-  const openIssues = issues.filter((i) => i.state === "open");
-  const closedIssues = issues.filter((i) => i.state === "closed");
+  const groups = groupByLabel(issues);
+  const headings = groups.map(([name, list]) => `${name} (${list.length})`);
 
   const lines = [];
   lines.push("## Issue Index");
@@ -77,20 +111,23 @@ function buildIndex(issues) {
   );
   lines.push("");
 
-  lines.push("### Open");
-  if (openIssues.length === 0) {
+  if (groups.length === 0) {
     lines.push("- 없음");
-  } else {
-    lines.push(...openIssues.map(issueLine));
+    return lines.join("\n");
   }
-  lines.push("");
 
-  lines.push("### Closed");
-  if (closedIssues.length === 0) {
-    lines.push("- 없음");
-  } else {
-    lines.push(...closedIssues.map(issueLine));
-  }
+  lines.push(headings.map((h) => `[${h}](#${anchor(h)})`).join(" · "));
+
+  groups.forEach(([name, list], i) => {
+    lines.push("");
+    lines.push(`### ${headings[i]}`);
+    if (name !== UNLABELED) {
+      lines.push("");
+      lines.push(`[이슈 목록에서 보기](${labelSearchUrl(name)})`);
+    }
+    lines.push("");
+    lines.push(...list.map(issueLine));
+  });
 
   return lines.join("\n");
 }

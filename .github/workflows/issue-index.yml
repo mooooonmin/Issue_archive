@@ -14,7 +14,7 @@ on:
 
 permissions:
   contents: write
-  issues: read
+  issues: write
 
 jobs:
   update-readme:
@@ -27,6 +27,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+
+      # Labels added with GITHUB_TOKEN don't start another run, so there is no loop.
+      - name: Apply category label
+        if: github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'edited')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node scripts/apply-category-label.mjs
 
       - name: Generate issue index
         env:
