@@ -45,7 +45,7 @@ body:
     id: solution
     attributes:
       label: 해결 방법
-      description: 명령어나 설정은 코드 블록에 언어를 적어 주세요. (예: ```powershell)
+      description: "명령어나 설정은 코드 블록에 언어를 적어 주세요. (예: ```powershell)"
     validations:
       required: true
 
