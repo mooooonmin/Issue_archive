@@ -20,7 +20,7 @@
 <!-- ISSUE_INDEX_START -->
 ## Issue Index
 
-업데이트: 2026-11-21 18:16:10 (KST) / 총 10개
+업데이트: 2026-11-21 18:16:21 (KST) / 총 10개
 
 [Flutter (4)](#flutter-4) · [Android (2)](#android-2) · [Git (2)](#git-2) · [Windows (2)](#windows-2) · [Next.js (1)](#nextjs-1) · [WSL/Linux (1)](#wsllinux-1)
 
@@ -64,5 +64,5 @@
 
 [이슈 목록에서 보기](https://github.com/mooooonmin/Issue_archive/issues?q=is%3Aissue%20label%3A%22WSL%2FLinux%22)
 
-- [#10](https://github.com/mooooonmin/Issue_archive/issues/10) WSL Ubuntu SSH 접속 IP 변경 가이드
+- [#10](https://github.com/mooooonmin/Issue_archive/issues/10) [WSL/Linux] Windows 포트 포워딩으로 WSL Ubuntu에 SSH 접속
 <!-- ISSUE_INDEX_END -->
