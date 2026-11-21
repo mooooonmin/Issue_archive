@@ -20,9 +20,9 @@
 <!-- ISSUE_INDEX_START -->
 ## Issue Index
 
-업데이트: 2026-11-01 13:06:35 (KST) / 총 9개
+업데이트: 2026-11-21 13:26:00 (KST) / 총 10개
 
-[Flutter (4)](#flutter-4) · [Android (2)](#android-2) · [Windows (2)](#windows-2) · [Git (1)](#git-1) · [Next.js (1)](#nextjs-1) · [WSL/Linux (1)](#wsllinux-1)
+[Flutter (4)](#flutter-4) · [Android (2)](#android-2) · [Git (2)](#git-2) · [Windows (2)](#windows-2) · [Next.js (1)](#nextjs-1) · [WSL/Linux (1)](#wsllinux-1)
 
 ### Flutter (4)
 
@@ -40,18 +40,19 @@
 - [#8](https://github.com/mooooonmin/Issue_archive/issues/8) app version up build
 - [#6](https://github.com/mooooonmin/Issue_archive/issues/6) 1. 키스토어 파일 생성
 
+### Git (2)
+
+[이슈 목록에서 보기](https://github.com/mooooonmin/Issue_archive/issues?q=is%3Aissue%20label%3A%22Git%22)
+
+- [#12](https://github.com/mooooonmin/Issue_archive/issues/12) [Git] gh repo sync로 포크를 원본 최신 상태로 맞추기
+- [#2](https://github.com/mooooonmin/Issue_archive/issues/2) git에서 "user.name" 및 "user.email"를 구성해야 합니다
+
 ### Windows (2)
 
 [이슈 목록에서 보기](https://github.com/mooooonmin/Issue_archive/issues?q=is%3Aissue%20label%3A%22Windows%22)
 
 - [#9](https://github.com/mooooonmin/Issue_archive/issues/9) Windows에서 lsof, kill, sudo 명령어가 작동하지 않을 때 대처 방법
 - [#7](https://github.com/mooooonmin/Issue_archive/issues/7) 관리자 권한으로 파일/폴더 삭제
-
-### Git (1)
-
-[이슈 목록에서 보기](https://github.com/mooooonmin/Issue_archive/issues?q=is%3Aissue%20label%3A%22Git%22)
-
-- [#2](https://github.com/mooooonmin/Issue_archive/issues/2) git에서 "user.name" 및 "user.email"를 구성해야 합니다
 
 ### Next.js (1)
 
