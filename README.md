@@ -20,7 +20,7 @@
 <!-- ISSUE_INDEX_START -->
 ## Issue Index
 
-업데이트: 2026-11-21 13:26:00 (KST) / 총 10개
+업데이트: 2026-11-21 18:12:39 (KST) / 총 10개
 
 [Flutter (4)](#flutter-4) · [Android (2)](#android-2) · [Git (2)](#git-2) · [Windows (2)](#windows-2) · [Next.js (1)](#nextjs-1) · [WSL/Linux (1)](#wsllinux-1)
 
