@@ -16,6 +16,11 @@ permissions:
   contents: write
   issues: write
 
+# 이슈를 만들고 바로 닫으면 실행이 두 번 겹쳐 README push가 충돌하므로 한 번에 하나씩 돌린다.
+concurrency:
+  group: issue-index
+  cancel-in-progress: false
+
 jobs:
   update-readme:
     runs-on: ubuntu-latest
@@ -53,4 +58,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add README.md
           git commit -m "chore: update issue index"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
           git push
