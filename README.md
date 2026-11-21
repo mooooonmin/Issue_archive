@@ -20,7 +20,7 @@
 <!-- ISSUE_INDEX_START -->
 ## Issue Index
 
-업데이트: 2026-11-21 18:12:51 (KST) / 총 10개
+업데이트: 2026-11-21 18:16:10 (KST) / 총 10개
 
 [Flutter (4)](#flutter-4) · [Android (2)](#android-2) · [Git (2)](#git-2) · [Windows (2)](#windows-2) · [Next.js (1)](#nextjs-1) · [WSL/Linux (1)](#wsllinux-1)
 
@@ -28,37 +28,37 @@
 
 [이슈 목록에서 보기](https://github.com/mooooonmin/Issue_archive/issues?q=is%3Aissue%20label%3A%22Flutter%22)
 
-- [#8](https://github.com/mooooonmin/Issue_archive/issues/8) app version up build
-- [#6](https://github.com/mooooonmin/Issue_archive/issues/6) 1. 키스토어 파일 생성
-- [#5](https://github.com/mooooonmin/Issue_archive/issues/5) Flutter 에서 flutter_native_splash 패키지를 통해 스플래시 화면을 생성하는 코드.
-- [#4](https://github.com/mooooonmin/Issue_archive/issues/4) Flutter 에서 flutter_launcher_icons 패키지를 통해 앱 아이콘을 생성하는 코드.
+- [#8](https://github.com/mooooonmin/Issue_archive/issues/8) [Flutter] 버전 올리고 릴리즈 빌드(AAB·APK) 만들기
+- [#6](https://github.com/mooooonmin/Issue_archive/issues/6) [Android] keytool로 릴리즈 키스토어 생성
+- [#5](https://github.com/mooooonmin/Issue_archive/issues/5) [Flutter] flutter_native_splash로 스플래시 화면 만들기
+- [#4](https://github.com/mooooonmin/Issue_archive/issues/4) [Flutter] flutter_launcher_icons로 앱 아이콘 생성
 
 ### Android (2)
 
 [이슈 목록에서 보기](https://github.com/mooooonmin/Issue_archive/issues?q=is%3Aissue%20label%3A%22Android%22)
 
-- [#8](https://github.com/mooooonmin/Issue_archive/issues/8) app version up build
-- [#6](https://github.com/mooooonmin/Issue_archive/issues/6) 1. 키스토어 파일 생성
+- [#8](https://github.com/mooooonmin/Issue_archive/issues/8) [Flutter] 버전 올리고 릴리즈 빌드(AAB·APK) 만들기
+- [#6](https://github.com/mooooonmin/Issue_archive/issues/6) [Android] keytool로 릴리즈 키스토어 생성
 
 ### Git (2)
 
 [이슈 목록에서 보기](https://github.com/mooooonmin/Issue_archive/issues?q=is%3Aissue%20label%3A%22Git%22)
 
 - [#12](https://github.com/mooooonmin/Issue_archive/issues/12) [Git] gh repo sync로 포크를 원본 최신 상태로 맞추기
-- [#2](https://github.com/mooooonmin/Issue_archive/issues/2) git에서 "user.name" 및 "user.email"를 구성해야 합니다
+- [#2](https://github.com/mooooonmin/Issue_archive/issues/2) [Git] user.name·user.email 설정 (로컬·전역)
 
 ### Windows (2)
 
 [이슈 목록에서 보기](https://github.com/mooooonmin/Issue_archive/issues?q=is%3Aissue%20label%3A%22Windows%22)
 
-- [#9](https://github.com/mooooonmin/Issue_archive/issues/9) Windows에서 lsof, kill, sudo 명령어가 작동하지 않을 때 대처 방법
-- [#7](https://github.com/mooooonmin/Issue_archive/issues/7) 관리자 권한으로 파일/폴더 삭제
+- [#9](https://github.com/mooooonmin/Issue_archive/issues/9) [Windows] 포트 쓰는 프로세스 찾아 종료 (netstat·taskkill)
+- [#7](https://github.com/mooooonmin/Issue_archive/issues/7) [Windows] 관리자 권한 CMD로 파일·폴더 강제 삭제
 
 ### Next.js (1)
 
 [이슈 목록에서 보기](https://github.com/mooooonmin/Issue_archive/issues?q=is%3Aissue%20label%3A%22Next.js%22)
 
-- [#3](https://github.com/mooooonmin/Issue_archive/issues/3) next 초기 설정
+- [#3](https://github.com/mooooonmin/Issue_archive/issues/3) [Next.js] create-next-app 15 초기 설정
 
 ### WSL/Linux (1)
 
